@@ -1,0 +1,84 @@
+Merge Two Sorted Lists
+
+
+Solution:
+//a very verbose solution of recurssion but it works.
+// performance : 96.56% Runtime and 81.59% better memory ( 4ms 14.8Mbs )
+
+#define s //showhead(headreturn)
+class Solution {
+public:
+    ListNode* head = NULL;
+    ListNode* headreturn = NULL;
+    void showhead(ListNode* head)
+    {
+        while (head != NULL)
+        {
+            cout<<head->val<<" ";
+            head = head->next;
+        }
+        cout<<endl;
+    }
+    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
+        //cout<<1;
+        if (list1 == NULL)
+        {
+            if (head == NULL)
+            {
+                return list2;
+            }
+            head->next = list2;
+            s;
+            return headreturn ;
+        }
+        if (list2 == NULL)
+        {
+            if (head == NULL)
+            {
+                return list1;
+            }
+            head->next = list1;
+            s;
+            return headreturn;
+        }    
+        
+        
+        if (list1->val >= list2->val)
+        {
+            // list 2 is small and should be taken
+            if (head == NULL)
+            {
+                head = list2;
+                headreturn = head;
+                list2 = list2->next;
+                head->next = NULL;
+            }
+            else
+            {
+                //head != NULL
+                head->next = list2;
+                list2 = list2->next;
+                head = head->next;
+                head->next = NULL;
+            }
+        }else
+        {
+            if (head == NULL)
+            {
+                head = list1;
+                headreturn = head;
+                list1 = list1->next;
+                head->next = NULL;
+            }
+            else
+            {
+                //head != NULL
+                head->next = list1;
+                list1 = list1->next;
+                head = head->next;
+                head->next = NULL;
+            }
+        }
+        return mergeTwoLists(list1, list2);
+    }
+};
